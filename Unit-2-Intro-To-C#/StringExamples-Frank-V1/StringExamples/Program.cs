@@ -17,7 +17,8 @@ class Program
          *
          * C# provides several methods to operate on strings:
          *
-         *    Hey) - compare the string to left of the . to string inside () for equals
+         * a method is a program that process data in an object/variable
+         *    .equals(string) - compare the string to left of the . to string inside () for equals
          *     .CompareTo(string) - return a number indicating how the first string relates to the second
          *                          return a negative number if first string is less than the second
          *                          return a zero if first string is equal the second
@@ -58,6 +59,43 @@ class Program
         else
         {
             Console.WriteLine("string1 is NOT equal string2");
+
+            string sentence = "my name is frank";
+            Console.WriteLine("there are" + sentence.Length + "characters");
+            
+            bool contains = sentence.Contains("frank");// true if the sentence contains frank
+            Console.WriteLine("DOes sentence contains Frank:" + contains);
+            Console.WriteLine("DOes sentence contains Frank:" + sentence.Contains("Marquise"));
+
+            string nameInSentence = sentence.Substring(11, 5);
+            Console.WriteLine("Name is:" + nameInSentence);
+            
+            Console.WriteLine("does the sentnces starts with the word MY " + sentence.StartsWith("My"));
+            Console.WriteLine("does the sentnces starts with the word my " + sentence.StartsWith("my"));
+            Console.WriteLine("does the sentnces end with the word C# " + sentence.StartsWith("C#"));
+            
+            
+            Console.WriteLine("result when sentence.trim is used");
+            
+            Console.WriteLine("does the sentnces starts with the word MY " + sentence.StartsWith("My"));
+            Console.WriteLine("does the sentnces starts with the word my " + sentence.StartsWith("my"));
+            Console.WriteLine("does the sentnces end with the word C# " + sentence.StartsWith("C#"));
         }
+        // Some methods that process strings
+        // to see a list of all methods available to an object - just type objectName.
+        //.Length - returns the number of characters in a string
+        //.contains(string)- returns true if the string given is inside the string u are looking at
+        // .substring(starting index, length) extract characters from the string strtating at the start index
+        //                                      for the numbers of characters indicated by the length
+        // Start index starts at zero not 1
+        //                          whenever you see the word position thats when it starts  counting at 1
+        //
+        // .startsWith(string) - retunr true if string starts with chars (case senstive)
+        // .endsWith(string) - retunr true if string ends with chars (case senstive)
+        //. trim() - remove any leading or trailing spaces 
+        //
+        //
+        
+        
     } // End of Main()
 }  // End of class Program
