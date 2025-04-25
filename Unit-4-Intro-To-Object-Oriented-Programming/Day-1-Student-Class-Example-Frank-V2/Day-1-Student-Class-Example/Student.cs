@@ -15,6 +15,10 @@
 //     the methods that manipulate the class data (behaviors of the object)
 //
 //  class can do whatever a programmer decides it should or shouldn't do
+
+
+//
+
 public class Student
 {
     // Define the data for our class
@@ -63,7 +67,7 @@ public class Student
 
         foreach (int score in testScores)
         {
-            Console.WriteLine(score);
+            Console.Write(score);
         }
     }
     
