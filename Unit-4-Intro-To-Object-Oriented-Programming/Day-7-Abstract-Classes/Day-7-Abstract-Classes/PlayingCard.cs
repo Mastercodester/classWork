@@ -8,7 +8,17 @@ namespace Day_6_Abstract_Classes
     // It's in the same namespace as the application (for now and for simplicity)
     //
 
-    public class PlayingCard
+    //adding the abstract to a class makes it abstract 
+    
+    //any generic methods must be changed from virtual to abstrac
+    //virtual mean a subclass MAY override the behavior of the method
+    //virtual method provides default behavior in an inheritance hierarchy
+    
+    
+    //abstract mean a subclass MUST override the behavior of the method
+    //abstract method does nothing - abstract is indicating the subclass
+    //                  must provide the behavior
+    public abstract class PlayingCard
     {
     /*********************************************************************
      * Data members (attributes, properties, variables)
@@ -153,11 +163,10 @@ namespace Day_6_Abstract_Classes
             //     string, bool, objects - Use System GetHashCode method
             return CardValue * 17 + CardColor.GetHashCode() + CardSuit.GetHashCode();
         }
+// abstract method tells any subclass you must provide this behavior
+//(abstract class doesn't define it)
+        public abstract void ShowCard();
 
-        public virtual void ShowCard()
-        {
-            Console.WriteLine(this);
-        }
 
     }  // End of PlayingCard class
 } // End of namespace

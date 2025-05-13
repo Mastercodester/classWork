@@ -34,9 +34,18 @@ public class Person
   *
   * 3 ways to define getters and setters shown
   *****************************************************************************/
- 
+ //Automatically implemented property
+ // Convenient and common - no special processing you want for getter /setter
+ //Automatically  defines a private variable for you (you dont need to declare it)
+ // Use the property Name to access the data if you set up a private variable on your own
  public string Name { get; set; }   // Use property name to assign values
 
+ 
+ //full property syntax or block-bodied syntax
+ //Usually/should have a private variable defiend that it represents
+ //you provide the processing for getter and setter
+ // flexible allows for custom logic in getter setter
+ // fairly common
  public int HeightInInches
  {
      get { return _heightInInches; }
@@ -64,6 +73,8 @@ public class Person
 
  /***************************************************************************************
   * Constructors - Initialize objects of the class
+  *
+  * nite use of propert names to init the data
   **************************************************************************************/
  public Person(string name, int heightInInches, double weightInPounds, int age, string gender)
  {
