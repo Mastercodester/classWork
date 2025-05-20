@@ -44,8 +44,10 @@ public class PlayingCard
      * protected so subclasses may access is OK since they are constants and cannot be changed
      * 
      * static so it can be referenced using the class name. ie. no object required
+     *
+     * raddonly so it can't be changed - const is Ok too
      ***************************************************************************************************/
-
+//                                datatype  variable-name       = initial value
     protected static readonly CardValue DEFAULTCARDVALUE = CardValue.Joker;   // enum data-type for value
     protected static readonly CardColor DEFAULTCOLOR = CardColor.Black;
     protected static readonly CardSuit  DEFAULTSUIT = CardSuit.Joker;
