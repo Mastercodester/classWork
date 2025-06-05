@@ -51,12 +51,12 @@ System.out.println("Let's vote on ice cream flavors. Here are your options: " + 
             }
 
 
-            showTopFlavors(maxVotes,votes);
 
-
-
+               showTopFlavors(maxVotes,votes);
 
         }
+
+
 
 
     }

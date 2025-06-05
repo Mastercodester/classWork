@@ -17,7 +17,7 @@ public class CardDeck
 	 * CardDeck has a set of PLayingCards - "has-a" relationship - define the object in the class
 	 ***************************************************************************************************/
 
-	List<PlayingCard> deckOfCards = new ArrayList<PlayingCard>();  // Define a ArrayList to hold PlayingCards
+	List<PlayingCard> deckOfCards = new ArrayList<PlayingCard>();  // Define an ArrayList to hold PlayingCards
 
 	/***************************************************************************************************
 	 * Number of non-Joker cards per suit
