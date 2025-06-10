@@ -1,0 +1,11 @@
+/* this is a comment is css*\
+/* css defines formatting for the page*\
+/* the general format: selector {css rules;}*\
+/* for now we use html tags as selectors */
+
+html {
+  /* this is a comment in css */
+  /* the general format: selector {css rules;} */
+  /* for now we use html tags as selectors */
+  background-color: lightblue;
+}
