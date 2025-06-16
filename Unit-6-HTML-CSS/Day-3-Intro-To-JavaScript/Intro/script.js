@@ -10,8 +10,37 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
+  const constantValue = 42; // const is used for constants
+  console.log(constantValue);//Display data on the console 
+  //JavaScript supports interpolation to construct strings similar to C#
+  //
+  //INTERPOLATION: ` words ${variable} used ` instead of the $ and { } syntax in C#
+  //
   // Declares a variable those value can be changed
   // Declares a variable that will always be an array
+  console.log(`This is a variable that can't change constantValue: ${constantValue}`);
+
+
+
+
+
+  let itbe = 94;
+  console.log(`This is a variable that can change itbe: ${itbe}`);
+  itbe = 100; // Reassigning the variable
+  console.log(`This is a variable that can change itbe: ${itbe}`);
+
+
+let planet = { name: "", inner: true, diameter: 0.00, color: color,
+
+}
+
+ 
+
+let array = ["things", 2, 3, 4, 5]; // let is used for variables that can change Displays the elemenst separated by a comma
+console.log(`This is a value in array is: ${array}`);
+console.log(array); // Display the array in a drop-down format in the console
+
+console.table(array); // Display the array in a table format in the console
 }
 
 /**
@@ -113,6 +142,8 @@ function mathFunctions() {
   console.log("Math.floor(1.99) : " + Math.floor(1.99));
   console.log("Math.ceil(1.01) : " + Math.ceil(1.01));
   console.log("Math.random() : " + Math.random());
+
+  
 }
 
 /*
