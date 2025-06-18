@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,42 +16,55 @@ public class Main {
         Set<String> flavors = new LinkedHashSet<>();
         Map<String, Integer> votes = new HashMap<>();
 
-boolean validResponse = true;
+        boolean validResponse = true;
         int maxVotes = 0;
 
-addNames(familyNames);
-addFlavors(flavors);
-System.out.println("Let's vote on ice cream flavors. Here are your options: " + flavors);
+        addNames(familyNames);
+        addFlavors(flavors);
+        System.out.println("Let's vote on ice cream flavors. Here are your options: " + flavors);
 
 
-           while (true){for (String member : familyNames){
-            System.out.print("\nWhich flavor do you want to vote for "+ member + "?");
-            String input = scanner.nextLine().trim().toLowerCase();
+        while (true){for (String member : familyNames){
 
-            switch (input) {
-                case "strawberry":
-                case "mint chocolate chip":
-                case "vanilla":
-                case " chocolate":
-                case " cookie dough":
+            boolean next = false;
 
-                    String flavor = input.substring(0, 1).toUpperCase() + input.substring(1);
-                    votes.put(flavor, votes.getOrDefault(flavor, 0) + 1);
-                    System.out.print("You voted for " + flavor + "!\n");
+            while (next == false) {
+                System.out.print("\nWhich flavor do you want to vote for "+ member + "?");
+                String input = scanner.nextLine().trim().toLowerCase();
+                if (flavors.contains(input)) {
 
+                    switch (input) {
+                        case "strawberry":
+                        case "mint chocolate chip":
+                        case "vanilla":
+                        case "chocolate":
+                        case "cookie dough":
+
+                            String flavor = input.substring(0, 1).toUpperCase() + input.substring(1);
+                            votes.put(flavor, votes.getOrDefault(flavor, 0) + 1);
+                            System.out.print("You voted for " + flavor + "!\n");
+                            next = true;
+
+                            break;
+                        default:
+                            System.out.print("Invalid flavor.");
+                            continue;
+                    }
                     break;
-                default:
+                }
+                else{
                     System.out.print("Invalid flavor.");
-                    continue;
-            }break;
-
-
-
+                }
             }
 
 
 
-               showTopFlavors(maxVotes,votes);
+
+        }
+
+
+
+            showTopFlavors(maxVotes,votes);
 
         }
 
@@ -72,35 +84,35 @@ System.out.println("Let's vote on ice cream flavors. Here are your options: " + 
 
 
     };
-public static void addFlavors(Set<String> flavors){
+    public static void addFlavors(Set<String> flavors){
 
-flavors.add("strawberry");
-    flavors.add("mint chocolate chip");
-    flavors.add("vanilla");
-    flavors.add("chocolate");
-    flavors.add("cookie dough");
-};
-
-
-public static void showTopFlavors(int maxVotes,  Map<String, Integer> votes){
+        flavors.add("strawberry");
+        flavors.add("mint chocolate chip");
+        flavors.add("vanilla");
+        flavors.add("chocolate");
+        flavors.add("cookie dough");
+    };
 
 
-    for (int votes2 : votes.values()){
-        if (votes2> maxVotes){
-            maxVotes = votes2;
+    public static void showTopFlavors(int maxVotes,  Map<String, Integer> votes){
+
+
+        for (int votes2 : votes.values()){
+            if (votes2> maxVotes){
+                maxVotes = votes2;
+            }
+        }
+
+        List<String> topFlavors = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : votes.entrySet()) {
+            if(entry.getValue() == maxVotes){
+                topFlavors.add(entry.getKey());
+            }
+        }
+        System.out.println("\nTop Flavor(s):");
+        for (String flavor : topFlavors) {
+            System.out.println(flavor + " with " + maxVotes + " vote(s)");
         }
     }
-
-    List<String> topFlavors = new ArrayList<>();
-    for (Map.Entry<String, Integer> entry : votes.entrySet()) {
-        if(entry.getValue() == maxVotes){
-            topFlavors.add(entry.getKey());
-        }
-    }
-    System.out.println("\nTop Flavor(s):");
-    for (String flavor : topFlavors) {
-        System.out.println(flavor + " with " + maxVotes + " vote(s)");
-    }
-}
 
 }

@@ -50,10 +50,14 @@ function getAvg(planet){
 
 
 function avgDiameter(planet){
+    let sum = 0
+   let  nextsum = 0
     for (dia ; planet;)
     {
-        avg = planet;
-        return  avg;
+     
+       
+        sum += planet.diameter;
+        return  sum;
     }
-
+nextsum = sum / planet.length;
 }
