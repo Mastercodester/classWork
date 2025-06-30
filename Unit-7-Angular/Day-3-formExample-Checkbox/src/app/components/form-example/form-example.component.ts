@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { throwError } from 'rxjs';
@@ -5,7 +6,7 @@ import { throwError } from 'rxjs';
 @Component({
   selector: 'form-example',  // Name used in html to reference the component <form-example>
   standalone: true,
-  imports: [FormsModule],  // Tell Angular we want Forms support for this code
+  imports: [FormsModule, CommonModule],  // Tell Angular we want Forms support for this code
   templateUrl: './form-example.component.html',
   styleUrl: './form-example.component.css'
 })
@@ -25,7 +26,37 @@ export class FormExampleComponent {
   // Checkbox need to be included in the html a individual element
   // More tomorrow
   //sports : any[] 
-  sports = ""
+  sports : any[] = [ // any type is used to make the array flexible - hold kind of datat
+    {
+      name: 'football',
+      value: 'football'
+    },
+    {
+      name: 'basketball',
+      value: 'basketball'
+    },
+    {
+      name: 'baseball',
+      value: 'baseball'
+    },
+    {
+      name: 'soccer',
+      value: 'soccer'
+    }
+    , {
+      name: 'cricket',
+      value: 'cricket'
+    }
+    , {
+      name: 'other',
+      value: 'other'
+    }
+    , {
+      name: 'hockey',
+      value: 'hockey'
+     
+    }
+  ]
  // Methods to handle interactions with the html/web page
   onSubmit() { // Handle the Submit button click on the  form
     this.buttonClicked = true
@@ -33,6 +64,23 @@ export class FormExampleComponent {
     console.log(`You entered ${this.firstName} in the First Name field`)
     console.log(`You entered ${this.lastName} in the Last Name field`)
     console.log(`You entered ${this.emailAddress} in the email field`)
-    console.log(`You entered ${this.sports} as sports you like`)
+  //  console.table(this.sports)
+  console.table(this.checkBoxResult)
+//.forEach() - an array function that will loop through an arra passing each element to an arrow function(=>)
+this.checkBoxResult.forEach((aBox) => console.log(aBox.name)
+)}
+
+  get checkBoxResult() {
+    // Loop through the sports array
+    // This will be used in the html to display the values
+return this.sports.filter((aCheckbox) => aCheckbox.checked)
+
+   /* if (this.sports) {
+      return this.sports.filter(sport => sport.checked).map(sport => sport.value);
+    } else {
+      return [];
+    }
+      */
+
   }
 }
