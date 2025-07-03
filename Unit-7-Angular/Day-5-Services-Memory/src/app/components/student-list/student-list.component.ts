@@ -1,8 +1,8 @@
 import { CommonModule }   from '@angular/common';
 import { Component }      from '@angular/core';
-import { StudentInfo }    from '../../interfaces/studentInfo';
-import { StudentService } from '../../services/student.service.memory';
-import { RouterLink } from '@angular/router';
+import { StudentInfo }    from '../../interfaces/studentInfo'; // give me acces to studentInfo interface
+import { StudentService } from '../../services/student.service.memory';// give me access to the student.service.memory 
+import { RouterLink } from '@angular/router'; 
 
 @Component({
   selector: 'student-list',
@@ -17,6 +17,9 @@ export class StudentListComponent {
 // it starts out as an empty array  
 //     var-name   : data-type
 public studentList : StudentInfo [] ; // This is an array of StudentInfo objects
+
+//Since we want the data in the initial display of the component
+//                use the constructor()  to get the data when the page is loaded 
 
 // constructor is used to initialize data in the component
 //
@@ -36,7 +39,9 @@ public studentList : StudentInfo [] ; // This is an array of StudentInfo objects
 //     constructor() {
 //                    studentService = new StudentService();// create the service
 //                   }                                      //    and assign it to the variable
-//                              
+//          Since the student Service is depemdency injectable we dont have to instantiate it
+//Angular will automatically instantiate a copy for use and pass it to the constructor
+//                   when you code an object of the service type as a parameter                     
 constructor(private studentService  : StudentService ) {
   // Call the service method to send back the current list of Student from the data source
   this.studentList = studentService.getStudentList(); // Initialize our StudentList from service
