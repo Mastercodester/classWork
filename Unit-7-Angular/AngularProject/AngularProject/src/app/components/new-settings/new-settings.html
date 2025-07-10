@@ -1,1 +1,9 @@
 <p>new-settings works!</p>
+
+<p> Timezoness:  {{TimezonePick}}</p>
+
+<select name="TimezonePick" [(ngModel)]="TimezonePick">
+    @for (f of Timezones; track f; track $index) {
+        <option [value]="f">{{f}}</option>
+    }
+</select>

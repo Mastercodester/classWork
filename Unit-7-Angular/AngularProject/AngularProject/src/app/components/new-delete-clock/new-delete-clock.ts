@@ -15,13 +15,11 @@ constructor(private serviceClock: ServiceClock) { }
 
 
 
-  public clocks: Clock[] = {
-     timezone: "America/New_York", isDigital: true ,
-     timezone1: "Europe/London", isDigital1: false ,
-     timezone2: "Asia/Tokyo", isDigital2: true
-
-   
-  }
+  public clocks: Clock[] = [
+    { timezone: "America/New_York", isDigital: true },
+    { timezone: "Europe/London", isDigital: false },
+    { timezone: "Asia/Tokyo", isDigital: true }
+  ];
 
   deleteClock(index: number): void {
     this.serviceClock.deleteClock(index);

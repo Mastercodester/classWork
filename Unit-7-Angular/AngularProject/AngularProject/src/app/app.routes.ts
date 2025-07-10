@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
 import { NewSettings } from './components/new-settings/new-settings';
-import { NewClockList } from './components/new-clock-list/new-clock-list';
+import { NewClocks } from './components/new-clocks/new-clocks';
 
 export const routes: Routes = [
-    {path: '', redirectTo: 'new-clock-list', pathMatch: 'full'},
+    {path: '', redirectTo: '/new-settings', pathMatch: 'full'},
+    {path: 'new-settings', component: NewSettings},
+    {path: 'new-clocks', component: NewClocks},
     
 ];
