@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Clock } from '../../clock';
-import { ServiceClock } from '../../services/service-clock';
-import { RouterOutlet } from '@angular/router';
-import { NewDeleteClock } from '../new-delete-clock/new-delete-clock';
+
+
+import { AppNewDeleteClock } from '../new-delete-clock/new-delete-clock';
 
 @Component({
   selector: 'app-clock-display',
-  imports: [CommonModule, RouterOutlet, NewDeleteClock, ServiceClock],
+  imports: [CommonModule,  AppNewDeleteClock],
   templateUrl: './clock-display.html',
   styleUrl: './clock-display.css',
-  standalone: true
+ 
 })
 export class ClockDisplay {
 ourClockInfo: Clock[] = [];
-  constructor(private serviceClock: ServiceClock) {
-    this.ourClockInfo = this.serviceClock.getClocks();
+  constructor(private AppdeleteClock: AppNewDeleteClock) {
+    this.ourClockInfo = this.AppdeleteClock.getClocks();
   }
   public deleteClock(index: number): void {
-    this.serviceClock.deleteClock(index);
-    this.ourClockInfo = this.serviceClock.getClocks();
+    this.AppdeleteClock.deleteClock(index);
+    this.ourClockInfo = this.AppdeleteClock.getClocks();
   }
 
 }

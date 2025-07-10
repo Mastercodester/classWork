@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+
 import { NewClockForum } from '../new-clock-forum/new-clock-forum';
 
 @Component({
   selector: 'app-new-settings',
-  imports: [CommonModule, RouterOutlet, FormsModule, NewClockForum],
+  imports: [CommonModule, FormsModule, NewClockForum],
   templateUrl: './new-settings.html',
   styleUrl: './new-settings.css'
 })
-export class NewSettings {
+export class AppNewSettings {
 Timezones: string[] = [
     'America/New_York',
     'Europe/London',

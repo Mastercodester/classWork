@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { Clock } from '../../clock';
 import { ServiceClock } from '../../services/service-clock';
-import { RouterOutlet } from '@angular/router';
+
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-new-delete-clock',
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule],
   templateUrl: './new-delete-clock.html',
   styleUrl: './new-delete-clock.css'
 })
-export class NewDeleteClock {
+export class AppNewDeleteClock {
 constructor(private serviceClock: ServiceClock) { }
 
 
@@ -25,6 +25,8 @@ constructor(private serviceClock: ServiceClock) { }
     this.serviceClock.deleteClock(index);
     this.clocks = this.serviceClock.getClocks();
   }
-  
+  getClocks(): Clock[] {
+    return this.serviceClock.getClocks();
+  }
   
 }

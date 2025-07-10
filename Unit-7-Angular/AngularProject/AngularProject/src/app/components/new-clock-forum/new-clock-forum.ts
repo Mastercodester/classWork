@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { Clock } from '../../clock';  
 import { ServiceClock } from '../../services/service-clock';
-import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-new-clock-forum',
-  imports: [CommonModule,RouterOutlet, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './new-clock-forum.html',
   styleUrl: './new-clock-forum.css'
 })
