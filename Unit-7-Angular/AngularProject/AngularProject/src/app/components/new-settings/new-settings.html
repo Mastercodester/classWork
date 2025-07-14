@@ -3,7 +3,7 @@
 <p> Timezoness:  {{TimezonePick}}</p>
 
 <select name="TimezonePick" [(ngModel)]="TimezonePick">
-    @for (f of Timezones;  track $index) {
+    @for (f of Timezones;  track $index ) {
         <option [value]="f">{{f}}</option>
     }
 </select>
