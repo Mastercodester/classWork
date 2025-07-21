@@ -3,13 +3,14 @@
 --
 -- USA format: 'mm/dd/yyyy'   United States
 -- EUR format: 'yyyy-mm-dd'   European
--- JIS format: 'dd.mm.yyyy'   Japanese industrial standard
+-- JIS format: 'dd.mm.yyyy'   Japanese industrial standard (iso)
 --
 -- You don't have to know or case what formatthe date is stored in
 -- (actually it's none of those)
 --
 -- Each database manager has a default display format (USA, EUR, JIS)
 
+--When coding a data as a literal you can use any format
 select birth_date, gambler_name   -- columns in the result
   from gambler                     -- table with the rows 
  where birth_date between '1970-01-01' and '12/31/1979';  -- rows where gambler was born in the 70's
