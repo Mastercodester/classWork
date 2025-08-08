@@ -1,7 +1,6 @@
 package com.gamblerapi.dao.GamblerDAO;
 
 import com.gamblerapi.model.Gambler;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,34 +34,6 @@ public class GamblerMemoryDao {
     {
         return gamblers;
     }
-
-
-
-public Gambler getGamblerbyID(int id){
-
-for(Gambler gambler : gamblers){
-
-    if (gambler.getId() == id) {
-        return gambler;
-    }
-}
-
-        return null;
-}
-
-
-
-
-public  Gambler getGamblerName(String name){
-
-        for (Gambler gambler : gamblers){
-            if(gambler.getName() == name){
-                return gambler;
-            }
-        }
-        return null;
-}
-
 
 
 }

@@ -1,4 +1,4 @@
-package com.gamblerapi.controller;
+package com.vegasapiserver.controller;
 // Anything associated with the server must be in the same package as the server
 //     so the server can find it.
 // Server, Controller, DAOs, POJO Model Class for data, Service, Repository, et al
@@ -8,13 +8,12 @@ package com.gamblerapi.controller;
 // When the server receives a request,
 //            it will route it to the appropriate controller
 
-import com.gamblerapi.dao.GamblerDAO.GamblerMemoryDao;
-import com.gamblerapi.model.Gambler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.vegasapiserver.dao.GamblerDAO.GamblerMemoryDao;
+import com.vegasapiserver.model.Gambler;
+import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 // When the server is looking for controller methods it searches for classes
@@ -36,10 +35,19 @@ public class GamblerController {
     // Controller methods are the methods that handle HTTP requests
     // They are annotated with @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, etc.
 
+    // Usually controller methods are not very big and have no logic except for error handling
+    // A typical controller:
+    //
+    //   1. Receives a request
+    //   2. Retrieves any parameters passed in the URL (path variables or query parameters)
+    //   3. Call the DAO to get the data
+    //   4. Return the data retrieved from the DAO
+    //
+
     // Data members for a class are defined outside any class (at the top)
     //    so all methods in the class can access them
 
-    // Define a reference to the GamblerDAO
+    // Define a reference to the GamblerDAO so we can use it's methods to get data
     private GamblerMemoryDao gamblerDao;
 
     // Constructor to initialize the GamblerDAO
@@ -69,10 +77,11 @@ public class GamblerController {
     //     for the URL path "/gamblers"
     @GetMapping("/gamblers")
     public List<Gambler> getAllGamblers() {
+        logRequest("GET\trequest for /gamblers");
         // Call the DAO method to get all gamblers
         //   and return the list of gamblers it gives us
         return gamblerDao.getGamblers();
-    }  // End getAllG
+    }  // End getAllGamblers
 
     // Define a controller method to handle a GET request to a specific Gambler by id
     //
@@ -92,12 +101,14 @@ public class GamblerController {
     //     and pass it as a parameter to the method
     // For now the method paraeter and the path variable must have the same name
     public Gambler getGamblerById(@PathVariable int id) {
+        logRequest("GET\trequest for /gamblers/"+id);
         // Call the DAO method to get the gambler by id
         //   and return the gambler it gives us
         return gamblerDao.getGamblerById(id);
     } // End of getGamblerById() method
 
-    // Define a controller method to handle a GET request to a specific Gambler by name
+    // Define a controller method to handle a GET request to a
+    //    specific Gamblers whose name contains a specified value
     //
     // We need:
     //   1. method returns a gambler: Gambler object
@@ -121,10 +132,74 @@ public class GamblerController {
     // The @RequestParam annotation tells the server to
     //      extract the value of the query parameter "name"
     // For now, the name of the parameter in the method must match the name of the query parameter
-    public Gambler getGamblerByName(@RequestParam String name) {
+    public List<Gambler> getGamblerByName(@RequestParam String name) {
+        logRequest("GET \trequest for /gamblers/search?name="+name);
         // Call the DAO method to get the gambler by name
         //   and return the gambler it gives us
         return gamblerDao.getGamblerByName(name);
     } // End of getGamblerByName() method
 
+    // Add a Gambler to the data source
+    //   1. method returns a gambler: Gambler object that was added
+    //   2. DAO method that add a Gambler: addGambler(aGambler)
+    //   3. URL path:  /gamblers
+    //   4. HTTP method: POST  --- POST HTTP request is used to add an object a data source
+    //                         --- The data to be handled by the API is sent the request body for a POST
+    //                         --- We retrieve the data from request with @RequestBody
+    //                         --- @RequestBody will:
+    //                         ---     1. Retrieve the JSON data from the body of the request
+    //                         ---     2. Instantiate and object of the class given
+    //                         ---     3. Use the standard named setters for the class to initialize the object
+    //                         ---        The attribute names in the JSON stored in the request body
+    //                         ---           must match the variable names in the class
+    //                                    The JSON attribute name is used to construct the setter name
+    //                         --            standard setter names: setVariableName
+    @PostMapping("/gamblers")  // This method will handle a POST request for the URL "/gamblers"
+    public Gambler addToDataSource(@RequestBody Gambler newGambler) {
+        logRequest("POST\trequest for /gamblers and object: " + newGambler);
+        return gamblerDao.addGambler(newGambler);  // Call the DAO method to add the Gambler to the data source
+    }
+
+    // Update a Gambler to the data source
+    //   1. method returns a gambler: Gambler object that was update
+    //   2. DAO method that update a Gambler: updateGambler(aGambler)
+    //   3. URL path:  /gamblers
+    //   4. HTTP method: PUT   --- PUT HTTP request is used to update an object a data source
+    //                         --- The data to be handled by the API is sent the request body for a PUT
+    //                         --- We retrieve the data from request with @RequestBody
+    //                         --- @RequestBody will:
+    //                         ---     1. Retrieve the JSON data from the body of the request
+    //                         ---     2. Instantiate and object of the class given
+    //                         ---     3. Use the standard named setters for the class to initialize the object
+    //                         ---        The attribute names in the JSON stored in the request body
+    //                         ---           must match the variable names in the class
+    //                                    The JSON attribute name is used to construct the setter name
+    //                         --            standard setter names: setVariableName
+    @PutMapping("/gamblers")
+    public Gambler updateAObject(@RequestBody Gambler updatedGambler) {
+        logRequest("PUT\trequest for /gamblers and object: " + updatedGambler);
+        return gamblerDao.updateGambler(updatedGambler);
+    }
+
+    // Delete a Gambler to the data source
+    //   1. method returns a gambler: nothing
+    //   2. DAO method that delete a Gambler: zapAGambler(aGambler)
+    //   3. URL path:  /gamblers/{id}  -- path variables are usually used to indicate a primary key
+    //   4. HTTP method: DELETE        --- DELETE HTTP request is used to delete an object a data source
+
+    @DeleteMapping("/gamblers/{id}")  // Path variable called id in the URL
+    public void removeAGambler(@PathVariable int id) { // parameter name must match the path variable for now
+        logRequest("DEL\trequest for /gamblers/" + id);
+        gamblerDao.zapAGambler(id);  // Call the DAO to delete the object using teh id passed to us
+    }
+
+    /**
+     * Log timestamp of request and request
+     * @param message
+     */
+    static void logRequest(String message) {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        System.out.println(timestamp + " - " + message);
+    }
 }  // End of GamblerController class

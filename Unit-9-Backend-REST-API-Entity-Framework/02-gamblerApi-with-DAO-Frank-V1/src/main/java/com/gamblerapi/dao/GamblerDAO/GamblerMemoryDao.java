@@ -55,53 +55,18 @@ public class GamblerMemoryDao {
     } // End of getGamblerById() method
 
     // Method to retrieve a gambler by name
-    public List<Gambler> getGamblerByName(String name) {
+    public Gambler getGamblerByName(String name) {
         // Loop through the data source to find the gambler with the given name
-        List<Gambler> theGamblers = new ArrayList<>();
-
         for (Gambler aGambler : gamblers) {
             // Check if the current gambler's name matches the given name
             // Use equalsIgnoreCase to compare names without case sensitivity
             // Note use of getter for current gambler's name
-            if (aGambler.getName().toLowerCase().contains(name.toLowerCase())) {
-                // Return the gambler if found
-                theGamblers.add(aGambler);
+            if (aGambler.getName().equalsIgnoreCase(name)) {
+                return aGambler; // Return the gambler if found
             }
         }
         // Return null if no gambler with the given name is found
-        return theGamblers;
+        return null;
     } // End of getGamblerByName() method
-
-
-    public Gambler addGambler(Gambler aGambler) {
-      try{  gamblers.add(aGambler);}
-      catch(Exception anexceptionBlock){
-          return null;
-
-
-        }
-      return aGambler;
-    }
-
-
-public Gambler updateGambler(Gambler updateGambler){
-
-   Gambler existingGambler = getGamblerById(updateGambler.getId());
-
-
-   gamblers.remove(existingGambler);
-   gamblers.add(updateGambler);
-
-   return updateGambler;
-}
-
-
-public void deleteGambler(int GamblerID){
-    Gambler existingGambler = getGamblerById(GamblerID);
-    gamblers.remove(existingGambler);
-}
-
-
-
 
 }  // end of GamblerMemoryDao class
