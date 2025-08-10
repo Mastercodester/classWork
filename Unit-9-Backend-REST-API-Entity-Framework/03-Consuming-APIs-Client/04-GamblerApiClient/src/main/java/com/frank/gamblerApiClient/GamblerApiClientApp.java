@@ -95,6 +95,20 @@ public class GamblerApiClientApp {
                             + ((gamblerService.getAGambler(idOfgamblerToDelete)) == null ? "successful" : "failed"));
 
 
+        /***************************************************************************
+         * Call API to search an existing gambler then try to retrieve and display it
+         * ***************************************************************************/
+
+
+        System.out.println("-".repeat(70) + "\nCall API to Search an existing gambler then try to retrieve and display it\n"+"-".repeat(70));
+
+        String searchString = "D";
+
+       Gambler[] foundGamblers = gamblerService.searchAGambler(searchString);
+
+for (Gambler aGambler : foundGamblers){
+aGambler.displayGambler();
+}
     } // End of main()
 
 }
