@@ -24,7 +24,7 @@ public class Pet {
     @Column(name="pet_type_id")
     private int petTypeId;
 
-    @Column(name="owner_id")
+    @Column(name="owner_id  ")
     private int ownerId;
 
 
