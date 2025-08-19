@@ -1,1 +1,33 @@
-<h1>This is our Home Page</h1>>
+<h1>List of Gamblers</h1>>
+
+
+<table id = "gamblerInfoTable">
+<!--<tr *ngFor="let aGamblers of theGamblers">-->
+@for (aGamblers of theGamblers ; track aGamblers.id){
+<tr>
+<td>
+    {{aGamblers.id}}
+</td>
+<td>
+    {{aGamblers.name}}
+</td>
+<td>
+    {{aGamblers.address}}
+</td>
+<td>
+    {{aGamblers.salary}}
+</td>
+
+
+<td>
+    {{aGamblers.birthDate}}
+</td>
+</tr>
+
+}@empty{<p>gambler</p>}
+
+
+
+
+
+</table>
