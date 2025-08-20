@@ -15,7 +15,7 @@ theGamblers : GamblerDataLayout[] = []
 //  {id: 3, address: "Miami", name: "Maanski", birthDate : "04-11-1960" , salary: 5000}
 
 
-
+shouldDisplayForm : boolean = false;
 
 constructor(private gamblerService : GamblerApiService){}
 

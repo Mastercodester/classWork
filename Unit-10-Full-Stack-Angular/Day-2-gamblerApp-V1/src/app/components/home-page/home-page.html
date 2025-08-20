@@ -28,6 +28,14 @@
 
 
 
+<button (click) = "shouldDisplayForm = true">Add a Gambler</button>
+
+<form [hidden] = "!shouldDisplayForm">
+
+<label id="name">Enter Name;</label>
+<input id="nameField" type= "text" [(ngModel)]="newGambler.name" name= "Name" >
+</form>
+
 
 
 </table>
